@@ -1,0 +1,20 @@
+<? $title = 'Les chaînes de la JoL-TV' ?>
+<? $this->headTitle($title) ?>
+<? $this->breadcrumbs()->append($title) ?>
+
+<?= $this->openLayout() ?>
+	<?= $this->openLayoutColumn() ?>
+		<?= $this->openModule() ?>
+			<?= $this->openModuleBody() ?>
+				<?= $this->openArticle() ?>
+					<?= $this->openArticleTitle() ?>
+						<h1><?= $title ?></h1>
+					<?= $this->closeArticleTitle() ?>
+					<?= $this->openArticleBody() ?>
+						<p>Tu roxx, <?= $this->escapeHtml($this->user()->getPseudonym()) ?> !</p>
+					<?= $this->closeArticleBody() ?>
+				<?= $this->closeArticle() ?>
+			<?= $this->closeModuleBody() ?>
+		<?= $this->closeModule() ?>
+	<?= $this->closeLayoutColumn() ?>
+<?= $this->closeLayout() ?>

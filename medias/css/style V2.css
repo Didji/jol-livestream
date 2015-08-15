@@ -1,0 +1,486 @@
+body{
+background: url("http://jolstatic.fr/www/img/noise.png") center top repeat, #000;
+padding: 0;
+margin: 0;
+}
+
+#pub {
+    width: 100%;
+    height: 60px;
+    padding: 4px 0 6px 0;
+    background: url("http://jolstatic.fr/www/img/noise.png") center top repeat, #777;
+    box-shadow : inset 0px -10px 80px #000, inset 0px 3px 4px #333, inset 0px -3px 4px #333;
+    border-bottom: 1px solid #bbb;
+    text-align: center;
+}
+
+#logo {
+    width: 100%;
+    height: 60px;
+    padding: 2px;
+    background: url("http://jolstatic.fr/www/img/noise.png") center top repeat, #ccc;
+    border-top: 4px solid #aaa;
+    border-bottom: 3px solid #ffb323;
+    box-shadow : inset 0px -20px 30px #fff, 0px 8px 8px #5e0507,
+                 0px 50px 0px #a30b11, 0px 100px 0px #c21219, 0px 150px 0px #f14223, 0px 175px 0px #ffc44c, 0px 175px 2px #000;
+    text-align: center;
+    overflow: hidden;
+}
+
+#wrapper {
+	margin : auto ;
+    margin-top: 45px;
+    margin-bottom: 90px;
+    width: 820px;
+    background: url("http://jolstatic.fr/www/img/noise.png") center top repeat, #eee;
+    border: 12px solid #bbb;
+    border-radius: 5px;
+    box-shadow : inset 0px 0px 6px #555, inset 0px 0px 1px #555,
+                 0px 0px 2px #300304, -20px 30px 1px rgba(0,0,0,0.2), 20px 30px 1px rgba(0,0,0,0.2);
+	padding: 40px 40px 60px 40px;
+    text-align: center;
+}
+
+#wrapper div {
+    background-color : #ccc;
+    border : 1px solid #aaa;
+    box-shadow: 2px 2px 2px #fff, -1px -1px 0px #bbb;
+}
+
+
+
+
+/* MODULES */
+
+#Dailymotion{
+    width: 620px;
+	height: 378px;
+    z-index:0;
+	margin-left: 0px;
+	display: none;
+}
+
+#Twitch{
+    width: 620px;
+	height: 378px;
+    z-index:1;
+	margin:auto;
+	margin-top: 30px;
+}
+
+#Twitch_Chat{
+    width: 620px;
+	height: 350px;
+    position: relative;
+	margin:auto ;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+#toggle_chat{
+	display: block;
+	width: 150px;
+	margin:auto;
+	text-align: center;
+	margin-top: 15px;
+}
+
+#agenda {
+    margin-top: 60px;
+    padding: 8px 8px 4px 7px;
+}
+
+#contenu{
+width: 720px;
+margin: auto;
+}
+
+
+
+
+/*Articles*/
+H1, H2 {
+  font-size:13px;
+  text-align:left;
+  background:url('http://jolstatic.fr/wildstar/site/design3/img/actu_titre2.png') no-repeat right top;
+  margin-bottom:5px;
+  margin-left:-22px;
+  color:#fff;
+  width:625px;
+  padding-left:32px;
+  height:40px;
+  padding-right:33px;
+  text-transform: uppercase;
+  font-weight:400;
+  line-height:23px;
+}
+
+.jol_actus_titre a{color:#fff;}
+
+.H3 { /* apparence titre h3 avec une class pour preserver les titres des depÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂªches. Class temporaire pour faire les tests*/
+	font-size:14px;
+	text-align:left;
+	margin-top:0;
+	margin-bottom: 15px !important;
+	border-bottom: 1px solid #BFBFBF;
+	padding:2px 0;
+}
+
+blockquote h2{
+	width:495px;
+	margin-left:-20px;
+}
+
+.jol_actus_accroche {
+	display: inline-block;
+	font-style:italic;
+	font-weight:bold;
+	background-color:#fff;
+width: 620px;
+margin-left: 13px;
+padding: 0 10px 6px;
+	height: 100px;
+  	color:#105e75;
+}
+
+.jol_actus_accroche_hr{
+	display: none;
+}
+
+.jol_actus_actualite {
+  margin-bottom:20px;
+  width:670px;
+}
+.jol_article_infos_bas ul {list-style:none}
+.jol_actualite_wrapper,
+.jol_articles_wrapper,
+.jol_archives_wrapper,
+.jol_galerie_wrapper,
+.jol_equipe_wrapper {
+  margin-top:1px;
+  text-align:justify;
+  padding:0px 20px 20px;
+}
+
+.jol_actus_vignette{
+	background-color:#fff;
+  	width:140px;
+  	margin-left:13px;
+  	padding:0 10px 6px;
+  	color:#283036;
+
+	display: inline-block;
+	float: left;
+}
+
+
+.jol_actus_corps,.jol_article_corps{
+	background-color:#fff;
+  	width:620px;
+  	margin-left:13px;
+  	padding:0 10px 6px;
+  	color:#283036;
+	display: inline-block;
+	color:#283036;
+}
+.jol_article_corps{
+	margin-top: -10px;
+}
+.jol_actus_corps h2, .jol_article_corps h2{
+	margin-left: -45px;
+	
+}
+
+.jol_article_corps p,
+.jol_actus_corps p,
+.jol_archives_wrapper p,
+.jol_equipe_wrapper p,
+.jol_actus_infos p {
+  line-height:1.5em;
+  margin-bottom:10px;
+
+}
+.jol_actus_suite {
+  text-align:right;
+  margin-left:13px;
+  margin-top:-10px;
+  padding:0 10px 10px 10px;
+  background-color:#fff;
+  width:620px;
+}
+.jol_actus_suite a{
+  color:#4d8a28;
+  font-weight:700;
+  background:url("http://jolstatic.fr/wildstar/site/design3/img/icone-lire-la-suite.png") no-repeat 0px 50%;
+  padding-left:20px;
+}
+.jol_article_outils,
+.jol_actus_outils {
+  display:none;
+}
+.jol_article_infos,
+.jol_article_infos_bas,
+.jol_actus_infos {
+  background-color:#fff;
+  width:630px;
+  font-size:10px;
+  font-style:italic;
+  text-align:right;
+  padding:0 10px 8px 0;
+  margin-top:-11px;
+  margin-left:13px;
+}
+
+
+/* ajout colleen */
+.jol_actus_infos span.jol_actus_date:before {
+	content:url("http://jolstatic.fr/wildstar/site/design3/img/icone-date.png");
+	vertical-align: middle;
+}
+.jol_actus_infos span.jol_actus_auteur:before {
+	content:url("http://jolstatic.fr/wildstar/site/design3/img/icone-auteur.png");
+	vertical-align: middle;
+}
+.jol_actus_infos span.jol_actus_commentaires:before {
+	content:url("http://jolstatic.fr/wildstar/site/design3/img/icone-commentaires.png");
+	vertical-align: middle;
+}
+/*********************/
+
+
+.jol_actus_source, .jol_article_sources {
+  font-size:10px;
+  font-style:italic;
+  text-align:left;;
+  background-color:#fff;
+  margin-left:13px;
+  max-width: 620px;
+  padding:3px 10px 3px 10px;	
+}
+.jol_article_corps ul, .jol_actus_corps ul ,.jol_article_corps ol, .jol_actus_corps ol{
+  margin:0px 0px 10px 30px;
+}
+.jol_article_corps blockquote, .jol_actus_corps blockquote{
+    background-color: #F7F7F7;
+    border-left: 5px solid #CCCCCC;
+    color: #000000;
+    margin: 15px 20px;
+    padding: 10px 20px;
+}
+
+.jol_article_corps td, .jol_actus_corps td{
+	border:none;
+}
+	
+.jol_article_corps table.bordures td, .jol_actus_corps table.bordures td{
+	border:1px solid #283036;
+}
+
+.jol_article_corps td.bordures, .jol_actus_corps td.bordures {
+	border:1px solid #283036;
+}
+
+.jol_article_corps table.bordure, .jol_actus_corps table.bordure{
+	border:1px solid #283036;
+}
+
+.jol_article_corps td p, .jol_actus_corps td p, .jol_articles_corps table.bordures td p, .jol_actus_corps table.bordures td p {
+	margin:10px;
+}
+
+.jol_equipe_wrapper ul{
+	margin-bottom:20px;
+}
+
+.jol_actus_corps hr{
+	width:90%;
+	height:2px;
+	background-color:#105E75;
+	border:0;
+	margin:auto;
+}
+
+div.jol_image {
+  margin-right:0px;
+  margin-bottom:5px;
+  border:solid 1px #1495C8;
+  background-color:#ffffff;
+  padding:6px;
+  margin:5px;
+}
+div.jol_image_legende {
+  font-size:11px;
+  text-align:center;
+}
+
+
+.reseaux_sociaux{
+	height:25px;
+	float: right;
+}
+
+/**
+ * Tags - Container des tags
+ */
+div.jol_actus_tags {
+    background-image:       url(http://jolstatic.fr/wildstar/site/design3/img/icone-tag.png);
+    background-repeat:      no-repeat;
+    background-position:    6px 50%;
+    background-color:		#bdbdbd;
+    margin:                 0 0 0 13px;
+    min-height:             15px;
+    padding:                2px 2px 2px 25px;
+  	width:					613px;
+  	font-size:				10px;
+  	text-align:left;
+}
+
+/**
+ *  Tags - Liste des tags
+ */
+div.jol_actus_tags ul.jol_actus_tags_liste {
+    list-style-type:    none;
+    margin:             1px 0 0 0;
+    padding:            0;
+}
+
+/**
+ *  Tags - Tag
+ */
+div.jol_actus_tags li.jol_actus_tags_tag {
+    display:            inline;
+    padding-right:      5px;
+}
+
+/**
+ * Tags - Separateur
+ */
+div.jol_actus_tags li.jol_actus_tags_tag:after {
+    content:    ',';
+}
+div.jol_actus_tags li.jol_actus_tags_tag_dernier:after {
+    content:    '';
+}
+
+div.jol_actus_reagir {
+  margin:10px 0px 0px 223px;
+  padding:10px!important;
+  color:#DADADA;
+  background-color:#e1e2e2;
+  padding:2px;
+	border:1px solid #ccc;
+}
+div.jol_actus_reagir  input{
+	padding:3px;
+	background:#105e75;
+	color:#DADADA;
+}
+div.jol_actus_reagir textarea{
+	margin:10px 0px;
+	border:1px solid #ccc;
+}
+
+
+/**
+ * Pages - Container
+ */
+div.jol_actus_pages {
+    color:  #999;
+    margin: 10px 0;
+}
+
+/**
+ * Pages - Liste des pages
+ */
+div.jol_actus_pages ul.jol_actus_pages_liste {
+    margin:     0;
+    padding:    0;
+    text-align: center;
+    margin-top:50px;
+}
+
+/**
+ * Pages - Page
+ */
+div.jol_actus_pages li.jol_actus_page {
+    list-style-type:    none;
+    display:            inline;
+    padding-bottom:     1px;
+    margin-right:       3px;
+}
+
+/**
+ * Pages - Separateur
+ */
+div.jol_actus_pages li.jol_actus_page_separateur { }
+
+/**
+ * Pages - Lien vers une page
+ */
+div.jol_actus_pages a.jol_actus_page_lien {
+    border:             1px solid #9aafe5;
+    color:              #105e75;
+    padding:            2px 5px;
+    text-decoration:    none;
+}
+
+/**
+ * Pages - Lien vers une page (survole ou actif)
+ */
+div.jol_actus_pages a.jol_actus_page_lien:hover,
+div.jol_actus_pages a.jol_actus_page_lien:active {
+    border:             1px solid #105e75;
+    color:              #105e75;
+}
+
+/**
+ * Pages - Lien vers la page courante
+ */
+div.jol_actus_pages a.jol_actus_page_lien_actif,
+div.jol_actus_pages a.jol_actus_page_lien_actif:hover {
+    background-color:   #105e75;
+    color:              #fff;
+    border-color:       #2b66a5;
+    font-weight:        bold;
+    cursor:             default;
+}
+
+/**
+ * Pages - Lien vers la page precedente ou suivante
+ */
+div.jol_actus_pages a.jol_actus_page_lien_suivprec {
+    color:              #105e75;
+    font-weight:        bold;
+}
+div.jol_actus_pages a.jol_actus_page_lien_suivprec:hover {
+    color:              #105e75
+}
+
+/**
+ * Pages - Liens desactives
+ */
+div.jol_actus_pages a.jol_actus_page_lien_desactive,
+div.jol_actus_pages a.jol_actus_page_lien_desactive:hover {
+    border-color:       #ccc;
+    color:              #ccc;
+    cursor:             default;
+    font-weight:        normal;
+}
+
+footer{
+border-top: 1px solid #444;
+background-color: #333;
+-moz-box-shadow: 0 5px 10px -5px #222 inset;
+-webkit-box-shadow: 0 5px 10px -5px #222 inset;
+box-shadow: 0 5px 10px -5px #222 inset;
+text-shadow: 0 1px 0 #000;
+background-image: url(http://jolstatic.fr/www/img/noise.png);
+width: 100%;
+text-align: center;
+bottom: 0;
+position: fixed;
+color: lightgray;
+}
+footer a{
+	color: white;
+}
