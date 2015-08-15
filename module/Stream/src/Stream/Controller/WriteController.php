@@ -100,9 +100,7 @@ class WriteController extends AbstractActionController
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 5);
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, true);
-        //curl_setopt($curl, CURLOPT_CAPATH, dirname(__DIR__));
         curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 2);
-        //curl_setopt($curl, CURLOPT_CAINFO, '/config/ca-bundle.crt');
         curl_setopt($curl, CURLOPT_CAINFO, '/config/cacert.pem');
 
         curl_setopt($curl, CURLOPT_VERBOSE, true);
@@ -147,7 +145,7 @@ class WriteController extends AbstractActionController
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, true);
-        curl_setopt($curl, CURLOPT_CAINFO, '/config/ca-bundle.crt');
+        curl_setopt($curl, CURLOPT_CAINFO, '/config/cacert.pem');
 
         //Déclaration du fichier de log
         curl_setopt($curl, CURLOPT_VERBOSE, true);
