@@ -30,7 +30,6 @@ class ApiConsumerService implements ApiConsumerServiceInterface
     {
         if (filter_var($url, FILTER_VALIDATE_URL) === false) {
             throw new \Exception("L'URL fournie est incorrecte");
-            
         }
 
         $curl = curl_init();
