@@ -41,14 +41,17 @@ class WriteController extends AbstractActionController
         $form = $this->form;
         $request = $this->getRequest();
 
-        // On crée un nouvel objet Channel qu'on associe au formulaire.
+        // On crée un nouvel objet Channel et on le lie au formulaire
         $channel = new Channel();
+        $form->bind($channel);
 
         // On associe le formulaire à son filtre
         $form->setInputFilter(new ChannelFilter());
 
-        // Si le requête est de type POST...
+        // Si la requête est de type POST, c'est que l'utilisateur a saisi des informations
+        // et qu'il faut donc enregistrer sa chaîne
         if ($request->isPost()) {
+            die(\Zend\Debug\Debug::dump($request->getPost()));
 
             $urlInfos = $this->decodeUrl($request->getPost('url'));
             $urlInfos['description'] = $request->getPost('description');
@@ -59,15 +62,13 @@ class WriteController extends AbstractActionController
 
             // Si ce contenu est bien validé par le formulaire...
             if ($form->isValid()) {
-                // On enregistre la nouvelle salutation. 
+                // On enregistre la nouvelle salutation.
                 $this->channelService->save($channel);
 
                 // Et on revient sur la page d'accueil Hello World.
                 return $this->redirect()->toRoute('streams');
             }
         }
-
-        $form->bind($channel);
 
         // On transmet le formulaire à la vue.
         return new ViewModel([
@@ -92,8 +93,7 @@ class WriteController extends AbstractActionController
     {
         $url = "https://api.twitch.tv/kraken/channels/" . $name;
         $verbose = fopen(dirname(__DIR__).'/errorlog.txt', 'w+');
-
-        //\Zend\Debug\Debug::dump(curl_version());
+        
         $curl = curl_init();
 
         curl_setopt($curl, CURLOPT_URL, $url);
@@ -109,18 +109,15 @@ class WriteController extends AbstractActionController
         $result = curl_exec($curl);
 
         if (curl_errno($curl)) {
-
             rewind($verbose);
             $verboseLog = stream_get_contents($verbose);
-
-            \Zend\Debug\Debug::dump(htmlspecialchars($verboseLog));
 
             $exception = new \Exception('Curl Exception : ' . curl_errno($curl) . ' - ' . htmlspecialchars(curl_error($curl)));
             curl_close($curl);
             throw $exception;
         }
 
-        die(\Zend\Debug\Debug::dump($result));
+        die(\Zend\Debug\Debug::dump(json_decode($result)));
 
         return json_decode($result);
     }

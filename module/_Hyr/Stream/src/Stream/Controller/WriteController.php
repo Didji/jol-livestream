@@ -124,4 +124,49 @@ class WriteController extends AbstractActionController
 
         return json_decode($result);
     }
+
+    public function testAction()
+    {
+        //URL de l'API à requêter
+        $url = "https://api.twitch.tv/kraken/streams/";
+
+        //Création du fichier de log curl
+        $verbose = fopen(dirname(__DIR__).'/errorlog.txt', 'w+');
+
+        $curl = curl_init();
+
+        //Paramétrage de CURL : 
+        // - Url à lire
+        // - Retour direct de la réponse de l'API (au lieu de true ou false)
+        // - Vérification du certificat
+        //      + N.B : Même en désactivant cette option, impossible d'accéder à l'URL de l'API,
+        //              l'exception levée est la même que si on veut vérifier le certificat (exception 77)
+        // - Chemin du certificat (chemin absolu), le certicifat se trouve bien dans le dossier /config à la racine du site livestream
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, true);
+        curl_setopt($curl, CURLOPT_CAINFO, '/config/cacert.pem');
+
+        //Déclaration du fichier de log
+        curl_setopt($curl, CURLOPT_VERBOSE, true);
+        curl_setopt($curl, CURLOPT_STDERR, $verbose);
+
+        $result = curl_exec($curl);
+
+        // En cas d'erreur, on affiche ce qui s'est passé
+        if (curl_errno($curl)) {
+
+            // On remet le pointeur au début du fichier de log, on lit et on affiche
+            rewind($verbose);
+            $verboseLog = stream_get_contents($verbose);
+            \Zend\Debug\Debug::dump(htmlspecialchars($verboseLog));
+
+            // On affiche l'exception levée
+            $exception = new \Exception('Curl Exception : ' . curl_errno($curl) . ' - ' . htmlspecialchars(curl_error($curl)));
+            curl_close($curl);
+            throw $exception;
+        }
+
+        return json_decode($result);
+    }
 }

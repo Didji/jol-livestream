@@ -1,0 +1,30 @@
+<? $title = 'Ajouter une chaîne' ?>
+<? $streamsUrl = $this->url('streams') ?>
+<? $user = $this->escapeHtml($this->user()->getId()) ?>
+<? $this->headTitle($title) ?>
+<? $this->breadcrumbs()->append('Streams', $streamsUrl)->append($title) ?>
+
+<?= $this->openLayout() ?>
+	<?= $this->openLayoutColumn() ?>
+		<?= $this->openModule() ?>
+			<?= $this->openModuleBody() ?>
+				<?= $this->openArticle() ?>
+				<?= $this->openArticleTitle() ?>
+					<h1><?= $title ?></h1>
+				<?= $this->closeArticleTitle() ?>
+				<?= $this->openArticleBody() ?>
+					<? $form = $this->form ?>
+					<? $form->setAttribute('action', $this->url('streams/add')) ?>
+					<? $form->get('user')->setAttribute('value', $user) ?>
+					<?= $this->form($form) ?>
+					<p><?= $this->button([
+					    'icon'      => 'chevron-left',
+					    'label'     => "Revenir à l'accueil",
+					    'url'       => $streamsUrl,
+					]) ?></p>
+				<?= $this->closeArticleBody() ?>
+				<?= $this->closeArticle() ?>
+			<?= $this->closeModuleBody() ?>
+		<?= $this->closeModule() ?>
+	<?= $this->closeLayoutColumn() ?>
+<?= $this->closeLayout() ?>
