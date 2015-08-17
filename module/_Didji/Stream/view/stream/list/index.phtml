@@ -3,18 +3,36 @@
 <? $this->breadcrumbs()->append($title) ?>
 
 <?= $this->openLayout() ?>
-	<?= $this->openLayoutColumn() ?>
-		<?= $this->openModule() ?>
-			<?= $this->openModuleBody() ?>
-				<?= $this->openArticle() ?>
-					<?= $this->openArticleTitle() ?>
-						<h1><?= $title ?></h1>
-					<?= $this->closeArticleTitle() ?>
-					<?= $this->openArticleBody() ?>
-						<p></p>
-					<?= $this->closeArticleBody() ?>
-				<?= $this->closeArticle() ?>
-			<?= $this->closeModuleBody() ?>
-		<?= $this->closeModule() ?>
-	<?= $this->closeLayoutColumn() ?>
+    <?= $this->openLayoutColumn() ?>
+        <?= $this->openModule() ?>
+            <?= $this->openModuleBody() ?>
+                <?= $this->openArticle() ?>
+                    <?= $this->openArticleTitle() ?>
+                        <h1><?= $title ?></h1>
+                    <?= $this->closeArticleTitle() ?>
+                    <?= $this->openArticleBody() ?>
+                        <p><?= $this->button([
+                            'icon'      => 'plus',
+                            'label'     => "Enregistrer sa chaîne",
+                            'url'       => $this->url('streams/add')
+                        ]) ?></p>
+                        <? if ($this->streams): ?>
+                            <div id="streamSlider" style="overflow:overlay;">
+                                <? foreach ($this->streams as $stream): ?>
+                                	<div id="streamDiv" style="float:left;">
+		                                <a target="_blank" href="<? echo $stream['channel']?>" style="background-image: none;">
+		                                    <img class="streamPreview" src="<? echo $stream['preview'] ?>" alt="<? echo $stream['title'] ?>" style="display:block;">
+		                                    <span class="streamTitle" style="display:inline-block;"><? echo $stream['title'] ?></span>
+		                                </a>
+	                            	</div>
+                                <? endforeach ?>
+                            </div>
+                        <? else: ?>                        	
+                            <p>Aucune chaîne de la JoL-TV n'émet actuellement</p>
+                        <? endif ?>
+                    <?= $this->closeArticleBody() ?>
+                <?= $this->closeArticle() ?>
+            <?= $this->closeModuleBody() ?>
+        <?= $this->closeModule() ?>
+    <?= $this->closeLayoutColumn() ?>
 <?= $this->closeLayout() ?>

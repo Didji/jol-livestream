@@ -33,11 +33,11 @@ class TwitchService extends ApiConsumerService
     /**
     * Récupère les informations sur une chaîne passée en paramètre
     *
-    * @param String $name   Nom de la chaîne à inspecter
+    * @param string $name Nom de la chaîne à inspecter
     *
     * @return Array Les informations de la chaîne
     */
-    public function getChannelData(string $name = null)
+    public function getChannelData($name = null)
     {
         // Construction de l'URL à requêter
         $channelUrl = $this->buildUrl('channels');
@@ -46,17 +46,40 @@ class TwitchService extends ApiConsumerService
         // Lancement de la requête
         $channelData = $this->executeQuery($url);
 
-        return $filteredData;
+        return $channelData;
+    }
+
+    /**
+    * Retourne les informations des streams des chaînes passées en paramètre, si elles sont en live
+    *
+    * @param string $channels Liste des chaînes séparées par une virgule à requêter
+    *
+    */
+    public function getStreams($channels)
+    {
+        // Construction de l'URL à requêter
+        $channelUrl = $this->buildUrl('streams');
+        $url = $channelUrl . '?channel=' . $channels;
+
+        // Lancement de la requête
+        $streamsData = $this->executeQuery($url);
+
+        // Si le paramètre _total vaut 0, aucun stream n'est actif
+        if ($streamsData['_total'] == 0) {
+            return '';
+        }
+
+        return $streamsData;
     }
 
     /**
     * Construit l'URL à requêter à partir de l'URL de base de l'API et de la section voulue
     *
-    * @param String $section Section à utiliser
+    * @param string $section Section à utiliser
     *
-    * @return String L'URL à requêter ou une chaîne vide si la section n'est pas valide
+    * @return string L'URL à requêter ou une chaîne vide si la section n'est pas valide
     */
-    private function buildUrl(string $section)
+    private function buildUrl($section)
     {
         // Si la section passée en paramètre est valide, on construit l'URL
         if (array_key_exists($section, $this->sectionsUrl)) {

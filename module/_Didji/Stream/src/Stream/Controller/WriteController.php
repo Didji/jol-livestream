@@ -86,11 +86,11 @@ class WriteController extends AbstractActionController
     /**
     * Décode l'URL renseignée par l'utilisateur pour en extraire la plateforme utilisée et le nom de la chaîne
     *
-    * @param String $url URL à parser
+    * @param string $url URL à parser
     *
     * @return Array Les informations extraites de l'URL
     */
-    private function decodeUrl(string $url)
+    private function decodeUrl($url)
     {
         // On vérifie que l'URL est valide
         $uri = UriFactory::factory($url);
@@ -108,13 +108,13 @@ class WriteController extends AbstractActionController
     /**
     * Récupère l'identifiant de la chaîne renseigné par la plateforme externe
     *
-    * @param String $type Plateforme externe
-    * @param String $name Nom de la chaîne
+    * @param string $type Plateforme externe
+    * @param string $name Nom de la chaîne
     *
-    * @return String Identifiant externe de la chaîne
+    * @return string Identifiant externe de la chaîne
     *
     */
-    private function getChannelId(string $type, string $name)
+    private function getChannelId($type, $name)
     {
         $apiConsumer = ApiConsumerService::getApiConsumer($type);
         $channelData = $apiConsumer->getChannelData($name);

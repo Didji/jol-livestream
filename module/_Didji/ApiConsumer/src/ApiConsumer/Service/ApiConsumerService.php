@@ -6,11 +6,11 @@ abstract class ApiConsumerService implements ApiConsumerServiceInterface
     /**
     * On construit directement une instance correspondante à la plateforme passée en paramètre
     *
-    * @param String $type La plateforme à utiliser (Twitch, Hitbox, ...)
+    * @param string $type La plateforme à utiliser (Twitch, Hitbox, ...)
     *
     * @return mixed Une instance pouvant se connecter à la plateforme
     */
-    public static function getApiConsumer(string $type = null)
+    public static function getApiConsumer($type = null)
     {
         switch ($type) {
             case 'twitch':
@@ -28,12 +28,12 @@ abstract class ApiConsumerService implements ApiConsumerServiceInterface
     /**
     * Construit un objet CURL et requête l'URL passée en paramètre, si elle est valide
     *
-    * @param String $url URL à requêter
+    * @param string $url URL à requêter
     *
     * @return Array Le résultat de la requête
     * @throws Exception Si l'URL est invalide
     */
-    protected function executeQuery(string $url = null)
+    protected function executeQuery($url = null)
     {
         if (filter_var($url, FILTER_VALIDATE_URL) === false) {
             throw new \Exception("L'URL fournie est incorrecte");
@@ -48,7 +48,7 @@ abstract class ApiConsumerService implements ApiConsumerServiceInterface
         //     - Chemin vers le certificat
         //     - Force la génération complète de logs
         //     - Détermine dans quel fichier les logs seront stockés
-        $verbose = fopen('/data/logs/curl_error.log', 'w+');
+        $verbose = fopen('/data/logs/curl_error.log', 'a+');
         $curl = curl_init();
 
         curl_setopt($curl, CURLOPT_URL, $url);

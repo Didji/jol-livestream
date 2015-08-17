@@ -5,7 +5,7 @@ use BadMethodCallException;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Stream\Repository\ChannelRepository")
  * @ORM\Table(name="channels")
  **/
 class Channel
@@ -46,7 +46,7 @@ class Channel
      * @param string $property
      * @return mixed
      */
-    public function __get(String $property)
+    public function __get($property)
     {
         $method = 'get' . ucfirst($property);
         if (!method_exists($this, $method)) {
@@ -59,7 +59,7 @@ class Channel
      * @param string $property
      * @param mixed $value
      */
-    public function __set(String $property, mixed $value)
+    public function __set($property, mixed $value)
     {
         $method = 'set' . ucfirst($property);
         if (!method_exists($this, $method)) {
@@ -120,7 +120,7 @@ class Channel
      * @param int
      * @return Channel
      */
-    public function setId(int $id)
+    public function setId($id)
     {
         $this->id = $id;
         return $this;
@@ -130,7 +130,7 @@ class Channel
      * @param string
      * @return Channel
      */
-    public function setName(string $name)
+    public function setName($name)
     {
         $this->name = $name;
         return $this;
@@ -140,7 +140,7 @@ class Channel
      * @param int
      * @return Channel
      */
-    public function setExternalId(int $externalId)
+    public function setExternalId($externalId)
     {
         $this->externalId = $externalId;
         return $this;
@@ -150,7 +150,7 @@ class Channel
      * @param string
      * @return Channel
      */
-    public function setJolUser(string $jolUser)
+    public function setJolUser($jolUser)
     {
         $this->jolUser = $jolUser;
         return $this;
@@ -160,7 +160,7 @@ class Channel
      * @param string
      * @return Channel
      */
-    public function setType(string $type)
+    public function setType($type)
     {
         $this->type = $type;
         return $this;
@@ -170,7 +170,7 @@ class Channel
      * @param string
      * @return Channel
      */
-    public function setDescription(string $description)
+    public function setDescription($description)
     {
         $this->description = $description;
         return $this;
