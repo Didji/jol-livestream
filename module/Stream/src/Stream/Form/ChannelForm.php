@@ -25,7 +25,7 @@ class ChannelForm extends Form
         ]);
 
         $this->add([
-            'name' => 'user',
+            'name' => 'jolUser',
             'type' => Hidden::class
         ]);
 

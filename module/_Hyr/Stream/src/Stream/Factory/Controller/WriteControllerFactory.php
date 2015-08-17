@@ -13,11 +13,11 @@ class WriteControllerFactory implements FactoryInterface
      * @param ServiceLocatorInterface $sm
      * @return WriteController
      */
-    public function createService(ServiceLocatorInterface $sm)
+    public function createService(ServiceLocatorInterface $serviceManager)
     {
         // Le service manager injecté est celui des contrôleurs.
         // On récupère le service manager principal.
-        $realSm = $sm->getServiceLocator();
+        $realSm = $serviceManager->getServiceLocator();
 
         return new WriteController(
             $realSm->get('FormElementManager')->get(ChannelForm::class),

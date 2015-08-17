@@ -7,10 +7,10 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 
 class ChannelServiceFactory implements FactoryInterface
 {
-    public function createService(ServiceLocatorInterface $sm)
+    public function createService(ServiceLocatorInterface $serviceManager)
     {
         return new ChannelService(
-            $sm->get('doctrine.entitymanager.orm_default')
+            $serviceManager->get('doctrine.entitymanager.orm_default')
         );
     }
 }

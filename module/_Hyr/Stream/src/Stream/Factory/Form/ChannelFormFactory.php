@@ -7,9 +7,9 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 
 class ChannelFormFactory implements FactoryInterface
 {
-    public function createService(ServiceLocatorInterface $sm)
+    public function createService(ServiceLocatorInterface $serviceManager)
     {
-        $realSm = $sm->getServiceLocator();
+        $realSm = $serviceManager->getServiceLocator();
 
         return new ChannelForm(
             $realSm->get('doctrine.entitymanager.orm_default')

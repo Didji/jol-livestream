@@ -15,7 +15,7 @@
 				<?= $this->openArticleBody() ?>
 					<? $form = $this->form ?>
 					<? $form->setAttribute('action', $this->url('streams/add')) ?>
-					<? $form->get('user')->setAttribute('value', $user) ?>
+					<? $form->get('jolUser')->setAttribute('value', $user) ?>
 					<?= $this->form($form) ?>
 					<p><?= $this->button([
 					    'icon'      => 'chevron-left',

@@ -2,6 +2,7 @@
 namespace Stream;
 
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
+use ZfcRbac\Guard\RouteGuard;
 
 return [
     'router' => [
@@ -27,17 +28,7 @@ return [
                                 'action' => 'add',
                             ],
                         ],
-                    ],
-                    'test-mind' => [
-                        'type' => 'literal',
-                        'options' => [
-                            'route' => '/test-mind',
-                            'defaults' => [
-                                'controller' => 'Write',
-                                'action' => 'test',
-                            ],
-                        ],
-                    ],
+                    ]
                 ],
             ],
         ],
@@ -46,11 +37,9 @@ return [
         'factories' => [
             'Stream\Controller\Write'
                 => Factory\Controller\WriteControllerFactory::class,
-        ],
-        'invokables' => [
             'Stream\Controller\List'
-                => Controller\ListController::class,
-        ],
+                => Factory\Controller\ListControllerFactory::class
+        ]
     ],
     'form_elements' => [
         'factories' => [
@@ -79,6 +68,13 @@ return [
                     Entity::class => 'ChannelAnnotationDriver',
                 ],
             ]
+        ],
+    ],
+    'zfc_rbac' => [
+        'guards' => [
+            RouteGuard::class => [
+                'streams*'      => ['member'],
+            ],
         ],
     ],
 ];

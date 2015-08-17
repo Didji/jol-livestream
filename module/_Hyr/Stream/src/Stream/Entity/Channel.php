@@ -5,10 +5,11 @@ use BadMethodCallException;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Stream\Repository\ChannelRepository")
  * @ORM\Table(name="channels")
  **/
-class Channel {
+class Channel
+{
     /**
     * @ORM\Id
     * @ORM\GeneratedValue(strategy="AUTO")
@@ -24,12 +25,12 @@ class Channel {
     /**
      * @ORM\Column(type="integer", nullable=false)
      */
-    protected $external_id;
+    protected $externalId;
 
     /**
      * @ORM\Column(type="integer", nullable=false)
      */
-    protected $jol_user;
+    protected $jolUser;
 
     /**
      * @ORM\Column(type="string", nullable=false)
@@ -58,7 +59,7 @@ class Channel {
      * @param string $property
      * @param mixed $value
      */
-    public function __set($property, $value)
+    public function __set($property, mixed $value)
     {
         $method = 'set' . ucfirst($property);
         if (!method_exists($this, $method)) {
@@ -88,7 +89,7 @@ class Channel {
      */
     public function getExternalId()
     {
-        return $this->external_id;
+        return $this->externalId;
     }
 
     /**
@@ -96,7 +97,7 @@ class Channel {
      */
     public function getJolUser()
     {
-        return $this->jol_user;
+        return $this->jolUser;
     }
 
     /**
@@ -139,9 +140,9 @@ class Channel {
      * @param int
      * @return Channel
      */
-    public function setExternalId($external_id)
+    public function setExternalId($externalId)
     {
-        $this->external_id = $external_id;
+        $this->externalId = $externalId;
         return $this;
     }
 
@@ -149,9 +150,9 @@ class Channel {
      * @param string
      * @return Channel
      */
-    public function setJolUser($jol_user)
+    public function setJolUser($jolUser)
     {
-        $this->jol_user = $jol_user;
+        $this->jolUser = $jolUser;
         return $this;
     }
 
