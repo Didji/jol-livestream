@@ -4,6 +4,9 @@ namespace Stream\Controller;
 use Stream\Entity\Channel;
 use Stream\InputFilter\ChannelFilter;
 use Stream\Service\ChannelServiceInterface;
+
+use ApiConsumer\Service\ApiConsumerService;
+
 use Zend\Form\FormInterface;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
@@ -51,21 +54,25 @@ class WriteController extends AbstractActionController
         // Si la requête est de type POST, c'est que l'utilisateur a saisi des informations
         // et qu'il faut donc enregistrer sa chaîne
         if ($request->isPost()) {
-            die(\Zend\Debug\Debug::dump($request->getPost()));
-
-            $urlInfos = $this->decodeUrl($request->getPost('url'));
-            $urlInfos['description'] = $request->getPost('description');
-            $externalInfos = $this->getExternalInfos($urlInfos['name']);
+            $formData = $request->getPost();
 
             // On transmet son contenu au formulaire.
-            $form->setData($request->getPost());
+            $form->setData($formData);
 
             // Si ce contenu est bien validé par le formulaire...
             if ($form->isValid()) {
-                // On enregistre la nouvelle salutation.
+                // On parse l'URL de la chaîne pour récupérer son nom et sa plateforme d'hébergement
+                $urlInfos = $this->decodeUrl($formData['url']);
+
+                // On utilise ces informations pour récupérer l'identifiant externe de la chaîne
+                // Et on peuple les informations manquantes
+                $externalId = $this->getChannelId($urlInfos['type'], $urlInfos['name']);
+                $channel = $channel->setType($urlInfos['type'])->setName($urlInfos['name'])->setExternalId($externalId);
+
+                // On enregistre la nouvelle chaîne.
                 $this->channelService->save($channel);
 
-                // Et on revient sur la page d'accueil Hello World.
+                // Et on revient sur la page d'accueil
                 return $this->redirect()->toRoute('streams');
             }
         }
@@ -76,10 +83,19 @@ class WriteController extends AbstractActionController
         ]);
     }
 
-    private function decodeUrl($url)
+    /**
+    * Décode l'URL renseignée par l'utilisateur pour en extraire la plateforme utilisée et le nom de la chaîne
+    *
+    * @param String $url URL à parser
+    *
+    * @return Array Les informations extraites de l'URL
+    */
+    private function decodeUrl(string $url)
     {
+        // On vérifie que l'URL est valide
         $uri = UriFactory::factory($url);
 
+        // On récupère le nom de l'hôte de l'URL (www.TWITCH.tv/...)
         $type = preg_match('/^(www\.)?(\w*)(\.\S*)?$/i', $uri->getHost(), $matches);
         $type = $matches[2];
 
@@ -89,36 +105,20 @@ class WriteController extends AbstractActionController
         );
     }
 
-    private function getExternalInfos($name)
+    /**
+    * Récupère l'identifiant de la chaîne renseigné par la plateforme externe
+    *
+    * @param String $type Plateforme externe
+    * @param String $name Nom de la chaîne
+    *
+    * @return String Identifiant externe de la chaîne
+    *
+    */
+    private function getChannelId(string $type, string $name)
     {
-        $url = "https://api.twitch.tv/kraken/channels/" . $name;
-        $verbose = fopen(dirname(__DIR__).'/errorlog.txt', 'w+');
-        
-        $curl = curl_init();
+        $apiConsumer = ApiConsumerService::getApiConsumer($type);
+        $channelData = $apiConsumer->getChannelData($name);
 
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 5);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, true);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 2);
-        curl_setopt($curl, CURLOPT_CAINFO, '/config/cacert.pem');
-
-        curl_setopt($curl, CURLOPT_VERBOSE, true);
-        curl_setopt($curl, CURLOPT_STDERR, $verbose);
-
-        $result = curl_exec($curl);
-
-        if (curl_errno($curl)) {
-            rewind($verbose);
-            $verboseLog = stream_get_contents($verbose);
-
-            $exception = new \Exception('Curl Exception : ' . curl_errno($curl) . ' - ' . htmlspecialchars(curl_error($curl)));
-            curl_close($curl);
-            throw $exception;
-        }
-
-        die(\Zend\Debug\Debug::dump(json_decode($result)));
-
-        return json_decode($result);
+        return $channelData['_id'];
     }
 }

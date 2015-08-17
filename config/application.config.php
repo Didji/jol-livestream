@@ -10,7 +10,7 @@ $modulePath = isset($modulePaths[$userId]) ? '_' . $modulePaths[$userId] . '/' :
 return [
     'modules' => [
         'Stream',
-        //'ApiConsumer'
+        'ApiConsumer'
     ],
     'module_listener_options' => [
         'module_paths' => [

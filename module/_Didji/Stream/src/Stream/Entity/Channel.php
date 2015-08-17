@@ -25,12 +25,12 @@ class Channel
     /**
      * @ORM\Column(type="integer", nullable=false)
      */
-    protected $external_id;
+    protected $externalId;
 
     /**
      * @ORM\Column(type="integer", nullable=false)
      */
-    protected $jol_user;
+    protected $jolUser;
 
     /**
      * @ORM\Column(type="string", nullable=false)
@@ -46,7 +46,7 @@ class Channel
      * @param string $property
      * @return mixed
      */
-    public function __get($property)
+    public function __get(String $property)
     {
         $method = 'get' . ucfirst($property);
         if (!method_exists($this, $method)) {
@@ -59,7 +59,7 @@ class Channel
      * @param string $property
      * @param mixed $value
      */
-    public function __set($property, $value)
+    public function __set(String $property, mixed $value)
     {
         $method = 'set' . ucfirst($property);
         if (!method_exists($this, $method)) {
@@ -71,7 +71,7 @@ class Channel
     /**
      * @return int
      */
-    private function getId()
+    public function getId()
     {
         return $this->id;
     }
@@ -79,7 +79,7 @@ class Channel
     /**
      * @return string
      */
-    private function getName()
+    public function getName()
     {
         return $this->name;
     }
@@ -87,23 +87,23 @@ class Channel
     /**
      * @return int
      */
-    private function getExternalId()
+    public function getExternalId()
     {
-        return $this->external_id;
+        return $this->externalId;
     }
 
     /**
      * @return string
      */
-    private function getJolUser()
+    public function getJolUser()
     {
-        return $this->jol_user;
+        return $this->jolUser;
     }
 
     /**
      * @return string
      */
-    private function getType()
+    public function getType()
     {
         return $this->type;
     }
@@ -111,7 +111,7 @@ class Channel
     /**
      * @return string
      */
-    private function getDescription()
+    public function getDescription()
     {
         return $this->description;
     }
@@ -120,7 +120,7 @@ class Channel
      * @param int
      * @return Channel
      */
-    private function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
         return $this;
@@ -130,7 +130,7 @@ class Channel
      * @param string
      * @return Channel
      */
-    private function setName($name)
+    public function setName(string $name)
     {
         $this->name = $name;
         return $this;
@@ -140,9 +140,9 @@ class Channel
      * @param int
      * @return Channel
      */
-    private function setExternalId($external_id)
+    public function setExternalId(int $externalId)
     {
-        $this->external_id = $external_id;
+        $this->externalId = $externalId;
         return $this;
     }
 
@@ -150,9 +150,9 @@ class Channel
      * @param string
      * @return Channel
      */
-    private function setJolUser($jol_user)
+    public function setJolUser(string $jolUser)
     {
-        $this->jol_user = $jol_user;
+        $this->jolUser = $jolUser;
         return $this;
     }
 
@@ -160,7 +160,7 @@ class Channel
      * @param string
      * @return Channel
      */
-    private function setType($type)
+    public function setType(string $type)
     {
         $this->type = $type;
         return $this;
@@ -170,7 +170,7 @@ class Channel
      * @param string
      * @return Channel
      */
-    private function setDescription($description)
+    public function setDescription(string $description)
     {
         $this->description = $description;
         return $this;

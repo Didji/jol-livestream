@@ -70,7 +70,7 @@ class Channel {
     /**
      * @return int
      */
-    private function getId()
+    public function getId()
     {
         return $this->id;
     }
@@ -78,7 +78,7 @@ class Channel {
     /**
      * @return string
      */
-    private function getName()
+    public function getName()
     {
         return $this->name;
     }
@@ -86,7 +86,7 @@ class Channel {
     /**
      * @return int
      */
-    private function getExternalId()
+    public function getExternalId()
     {
         return $this->external_id;
     }
@@ -94,7 +94,7 @@ class Channel {
     /**
      * @return string
      */
-    private function getJolUser()
+    public function getJolUser()
     {
         return $this->jol_user;
     }
@@ -102,7 +102,7 @@ class Channel {
     /**
      * @return string
      */
-    private function getType()
+    public function getType()
     {
         return $this->type;
     }
@@ -110,7 +110,7 @@ class Channel {
     /**
      * @return string
      */
-    private function getDescription()
+    public function getDescription()
     {
         return $this->description;
     }
@@ -119,7 +119,7 @@ class Channel {
      * @param int
      * @return Channel
      */
-    private function setId($id)
+    public function setId($id)
     {
         $this->id = $id;
         return $this;
@@ -129,7 +129,7 @@ class Channel {
      * @param string
      * @return Channel
      */
-    private function setName($name)
+    public function setName($name)
     {
         $this->name = $name;
         return $this;
@@ -139,7 +139,7 @@ class Channel {
      * @param int
      * @return Channel
      */
-    private function setExternalId($external_id)
+    public function setExternalId($external_id)
     {
         $this->external_id = $external_id;
         return $this;
@@ -149,7 +149,7 @@ class Channel {
      * @param string
      * @return Channel
      */
-    private function setJolUser($jol_user)
+    public function setJolUser($jol_user)
     {
         $this->jol_user = $jol_user;
         return $this;
@@ -159,7 +159,7 @@ class Channel {
      * @param string
      * @return Channel
      */
-    private function setType($type)
+    public function setType($type)
     {
         $this->type = $type;
         return $this;
@@ -169,7 +169,7 @@ class Channel {
      * @param string
      * @return Channel
      */
-    private function setDescription($description)
+    public function setDescription($description)
     {
         $this->description = $description;
         return $this;

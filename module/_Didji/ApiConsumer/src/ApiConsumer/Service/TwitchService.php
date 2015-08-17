@@ -33,22 +33,20 @@ class TwitchService extends ApiConsumerService
     /**
     * Récupère les informations sur une chaîne passée en paramètre
     *
-    * @param String $name Nom de la chaîne à inspecter
+    * @param String $name   Nom de la chaîne à inspecter
     *
     * @return Array Les informations de la chaîne
     */
-    public function getChannelData($name = '')
+    public function getChannelData(string $name = null)
     {
         // Construction de l'URL à requêter
         $channelUrl = $this->buildUrl('channels');
         $url = $channelUrl . $name;
 
         // Lancement de la requête
-        $data = $this->executeQuery($url);
+        $channelData = $this->executeQuery($url);
 
-        // On ne récupère que les informations de la chaîne elle-même
-
-        return $data;
+        return $filteredData;
     }
 
     /**
@@ -58,11 +56,11 @@ class TwitchService extends ApiConsumerService
     *
     * @return String L'URL à requêter ou une chaîne vide si la section n'est pas valide
     */
-    private function buildUrl($section)
+    private function buildUrl(string $section)
     {
         // Si la section passée en paramètre est valide, on construit l'URL
         if (array_key_exists($section, $this->sectionsUrl)) {
-            return $this->baseUrl . $section;
+            return $this->baseUrl . $this->sectionsUrl[$section];
         }
 
         return '';

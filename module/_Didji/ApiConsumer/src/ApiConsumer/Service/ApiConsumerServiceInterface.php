@@ -10,5 +10,5 @@ interface ApiConsumerServiceInterface
     *
     * @return Array Les informations de la chaîne
     */
-    public function getChannelData($name = '');
+    public function getChannelData(string $name = null);
 }

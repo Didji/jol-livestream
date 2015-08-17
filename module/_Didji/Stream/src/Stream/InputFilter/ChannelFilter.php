@@ -26,22 +26,11 @@ class ChannelFilter extends InputFilter
         ]));
 
         $this->add($factory->createInput([
-            'name' => 'user',
+            'name' => 'jolUser',
             'required' => true,
             'filters' => [
                 [
-                    'name' => StripTags::class,
-                ],
-                [
-                    'name' => StringTrim::class,
-                ],
-            ],
-            'validators' => [
-                [
-                    'name' => StringLength::class,
-                    'options' => [
-                        'max' => 100,
-                    ],
+                    'name' => ToInt::class,
                 ],
             ],
         ]));
